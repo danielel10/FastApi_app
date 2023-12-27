@@ -30,7 +30,11 @@ models.Base.metadata.create_all(bind=engine)
 
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl="token")
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/auth",
+    tags=["auth"],
+    responses= {401: {"user": "not authorized"}}
+)
 
 
 def get_db():
